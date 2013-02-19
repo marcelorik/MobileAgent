@@ -1,0 +1,61 @@
+import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
+import java.rmi.Remote;
+
+public class AgenteMovel implements AgenteMovelI
+{ 
+    // "obj" is the reference of the remote object
+    AgenciaI obj = null;
+    
+    //Agente possui 1 ou mais serviços
+    //ServiceI service0 = new ServiceInformation();
+    //ServiceI service1 = new ServiceHello();
+ 
+    public AgenteMovel()
+    {
+	//this.vetorAgencia = agencias;
+        try { 
+               
+            this.obj = (AgenciaI) Naming.lookup("//localhost/RmiServer");
+             System.out.println("Tipos serviços : " + obj.kindService());	   
+        } catch (Exception e) { 
+            System.err.println("RmiClient exception: " + e); 
+            e.printStackTrace(); 
+        } 
+    } 
+
+    public void execute()
+    {
+	try
+	{  
+	  //Executa todos serviços
+	  String[] tokens = (obj.kindService()).split(",");
+          for(String key : tokens) {
+	    obj.execute(Integer.parseInt(key));
+          }
+
+	}catch(Exception e){
+            System.err.println("RmiClient exception: " + e); 
+            e.printStackTrace(); 
+        } 
+    }
+    
+    public int action(){
+      return 0;
+    }
+    
+     public int[] serviceWant(){
+      return null;
+    }
+ 
+    public static void main(String args[]) {
+        // Create and install a security manager
+        if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new RMISecurityManager());
+        }
+ 
+        AgenteMovelI agente = new AgenteMovel();
+	agente.execute();
+
+    }
+}
