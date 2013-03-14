@@ -1,0 +1,8 @@
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+ 
+public interface AgenciaI extends Remote {
+    public void execute(int typeService) throws RemoteException;
+    //Retorna tipos serviços oferecidos pela agência
+    public String kindService() throws RemoteException;
+}

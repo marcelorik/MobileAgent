@@ -1,0 +1,7 @@
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+ 
+public interface RemoteObjectI extends Remote {
+    public void printObject(Object o) throws RemoteException;
+    public void printHasTransient(HasTransient o) throws RemoteException;
+}
