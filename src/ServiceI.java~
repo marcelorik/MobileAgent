@@ -1,6 +1,0 @@
-import java.io.Serializable;
-
-public interface ServiceI extends Serializable{
-    public void doService();
-    public int typeService();
-}

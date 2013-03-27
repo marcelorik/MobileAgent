@@ -1,8 +1,0 @@
-import java.rmi.Remote;
-import java.rmi.RemoteException;
- 
-public interface AgenteMovelI{
-    public void execute();
-    public int action(); //Vontade do agente
-    public int[] serviceWant(); //Retorna codigo dos serviços que devem ser executados
-}
